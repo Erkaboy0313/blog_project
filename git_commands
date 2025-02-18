@@ -1,0 +1,28 @@
+git add .
+git commit
+
+git push
+git pull
+
+git clone
+
+
+git add <origin> 
+git remote -v 
+
+git branch
+git checkout -b new_branch
+
+git checkout
+git merge
+
+git branch -d new_branch
+
+git push origin --delete new_branch
+
+
+
+
+
+
+
