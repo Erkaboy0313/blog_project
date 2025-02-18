@@ -6,6 +6,9 @@ from django.conf import settings
 from report.models import Subscribe
 new_signal = Signal()
 
+@receiver(new_signal)
+def listen_new_signal(sender,**kwargs):
+    print(kwargs.get("mydata"),'is received')
 
 @receiver(pre_save,sender = Blog)
 def pre_save_blog(sender,instance,**kwargs):
