@@ -3,6 +3,7 @@ from django.db.models.signals import pre_save,post_save
 from .models import Blog
 from django.core.mail import send_mail
 from django.conf import settings
+from report.models import Subscribe
 new_signal = Signal()
 
 
@@ -14,9 +15,6 @@ def pre_save_blog(sender,instance,**kwargs):
 @receiver(post_save,sender = Blog)
 def pre_save_blog(sender,instance,created,**kwargs):
     if created:
-        print("email yuborildi")
-        send_mail("Blog saytdan habar",message="Bizda yangi blog qo'yildi",recipient_list=['jahongir192006@gmail.com'],from_email=settings.EMAIL_HOST_USER)
-    else:
-        
-        print(instance, 'yangilandi')
+        subscribers = Subscribe.objects.values_list('email')
+        send_mail("Blog saytdan habar",message="Bizda yangi blog qo'yildi",recipient_list=subscribers,from_email=settings.EMAIL_HOST_USER)
 
