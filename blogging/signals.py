@@ -5,6 +5,9 @@ from django.core.mail import send_mail
 from django.conf import settings
 new_signal = Signal()
 
+@receiver(new_signal)
+def listen_new_signal(sender,**kwargs):
+    print(kwargs.get("mydata"),'is received')
 
 @receiver(pre_save,sender = Blog)
 def pre_save_blog(sender,instance,**kwargs):
